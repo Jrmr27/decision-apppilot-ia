@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Decision Pilot IA: aplicación educativa para estructurar decisiones complejas mediante prompts." />
+  <title>Decision Pilot IA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Decision Pilot IA</h1>
+      <p class="intro">
+        Miniaplicación educativa para estructurar decisiones complejas con ayuda de IA.
+        Define el contexto, la decisión, los datos y las restricciones para generar un prompt razonado y reutilizable.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="app-panel" aria-labelledby="form-title">
+      <h2 id="form-title">Configurar caso de decisión</h2>
+
+      <form id="decision-form" novalidate>
+        <div class="form-group">
+          <label for="caseSelect">Selecciona un caso</label>
+          <select id="caseSelect" name="caseSelect">
+            <option value="">-- Elige un caso --</option>
+            <option value="admisiones_becas">Admisión y becas universitarias</option>
+            <option value="soporte_ti">Tickets internos de soporte TI</option>
+            <option value="fraude_ecommerce">Devoluciones y fraude en e-commerce</option>
+            <option value="documentacion_corporativa">Asistente interno de documentación corporativa</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contexto">Contexto</label>
+          <textarea
+            id="contexto"
+            name="contexto"
+            rows="5"
+            placeholder="Describe la situación, el entorno y el problema general."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="decision">Decisión a tomar</label>
+          <textarea
+            id="decision"
+            name="decision"
+            rows="4"
+            placeholder="Explica qué decisión concreta debe tomarse."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="datos">Datos disponibles</label>
+          <textarea
+            id="datos"
+            name="datos"
+            rows="5"
+            placeholder="Indica datos, métricas, volúmenes, fuentes o evidencias disponibles."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="restricciones">Restricciones</label>
+          <textarea
+            id="restricciones"
+            name="restricciones"
+            rows="4"
+            placeholder="Incluye límites de tiempo, coste, riesgo, privacidad, regulación o control humano."
+          ></textarea>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="generateBtn">Generar prompt final</button>
+          <button type="button" id="copyBtn">Copiar prompt</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="output-panel" aria-labelledby="output-title">
+      <h2 id="output-title">Prompt generado</h2>
+      <p class="output-help">
+        Aquí aparecerá el prompt estructurado para usarlo en una IA de libre acceso desde el navegador.
+      </p>
+      <pre id="output" aria-live="polite"></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Autores:</strong> Equipo del laboratorio Decision Pilot IA</p>
+      <p>
+        <strong>Repositorio:</strong>
+        <a href="https://github.com/usuario/decision-pilot-ia" target="_blank" rel="noopener noreferrer">
+          github.com/usuario/decision-pilot-ia
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="prompts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
