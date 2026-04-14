@@ -88,6 +88,8 @@ Reglas de respuesta:
 - Prioriza claridad, lógica y trazabilidad.
 - Usa lenguaje profesional y comprensible.
 - Evita inventar datos concretos no proporcionados. Si necesitas asumir algo, indícalo.
+- Mantén un nivel de detalle similar en las tres alternativas para que puedan compararse bien.
+- Cuando menciones costes, riesgos o impacto, relaciónalos con la información proporcionada en el caso.
 `;
 
 function buildPrompt(caso, contexto, decision, datos, restricciones) {
