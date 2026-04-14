@@ -288,6 +288,26 @@ button:active {
     padding: 0.85rem 0.85rem;
   }
 
+  .intro-note {
+  max-width: 760px;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.case-description {
+  margin-top: 0.55rem;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
   #output {
     font-size: 0.9rem;
     padding: 0.9rem;
