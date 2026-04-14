@@ -123,3 +123,4 @@ ${restricciones}
 Genera una recomendación razonada siguiendo exactamente la estructura pedida.
 `.trim();
 }
+window.buildPrompt = buildPrompt;
