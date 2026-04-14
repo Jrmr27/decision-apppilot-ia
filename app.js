@@ -11,6 +11,7 @@ let casosPrecargados = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarCasos();
+  copyBtn.disabled = true;
   caseSelect.addEventListener("change", autocompletarCaso);
   generateBtn.addEventListener("click", generarPromptFinal);
   copyBtn.addEventListener("click", copiarPrompt);
@@ -35,8 +36,30 @@ function autocompletarCaso() {
 
   if (!casoSeleccionado) {
     limpiarFormulario(false);
+    if (caseDescription) {
+      caseDescription.textContent = "Selecciona uno de los cuatro casos para cargar un ejemplo precargado.";
+    }
     return;
   }
+
+  const caso = casosPrecargados.find((item) => item.id === casoSeleccionado);
+
+  if (!caso) {
+    mostrarMensaje("No se encontró información para el caso seleccionado.", "error");
+    return;
+  }
+
+  if (caseDescription) {
+    caseDescription.textContent = caso.descripcion || "Caso cargado correctamente.";
+  }
+
+  contextoInput.value = caso.contexto || "";
+  decisionInput.value = caso.decision || "";
+  datosInput.value = construirBloqueDatos(caso);
+  restriccionesInput.value = construirBloqueRestricciones(caso);
+  output.textContent = "Aquí aparecerá el prompt generado cuando completes el formulario.";
+  limpiarMensaje();
+}
 
   const caso = casosPrecargados.find((item) => item.id === casoSeleccionado);
 
@@ -86,18 +109,16 @@ function generarPromptFinal() {
   const decision = decisionInput.value.trim();
   const datos = datosInput.value.trim();
   const restricciones = restriccionesInput.value.trim();
-
   if (!validarCampos(caso, contexto, decision, datos, restricciones)) {
     return;
   }
-
   if (typeof buildPrompt !== "function") {
     mostrarMensaje("La función buildPrompt no está disponible en prompts.js.", "error");
     return;
   }
-
   const promptFinal = buildPrompt(caso, contexto, decision, datos, restricciones);
   output.textContent = promptFinal;
+  copyBtn.disabled = false;
   limpiarMensaje();
 }
 
@@ -154,6 +175,19 @@ function limpiarFormulario(limpiarSelector = true) {
   if (limpiarSelector) {
     caseSelect.value = "";
   }
+
+  contextoInput.value = "";
+  decisionInput.value = "";
+  datosInput.value = "";
+  restriccionesInput.value = "";
+  output.textContent = "Aquí aparecerá el prompt generado cuando completes el formulario.";
+
+  if (caseDescription) {
+    caseDescription.textContent = "Selecciona uno de los cuatro casos para cargar un ejemplo precargado.";
+  }
+
+  limpiarMensaje();
+}
 
   contextoInput.value = "";
   decisionInput.value = "";
